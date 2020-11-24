@@ -1,0 +1,13 @@
+/*body {
+  margin: 0;
+  overflow: scroll;
+  background-color: white;
+  color:black;
+}
+*/
+.heading{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}

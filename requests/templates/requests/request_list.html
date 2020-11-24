@@ -1,0 +1,39 @@
+{% extends "requests/requests_base.html" %}
+{% load bootstrap3 %}
+
+{% block prerequest %}
+<div class="col-md-4">
+  <div class="content">
+    {% if user.is_authenticated %}
+    <h2>Welcome back<a href="{% url 'posts:for_user' username=user.username %}"> @{{user.username}}</a></h2>
+    {% endif %}
+    <p>List of open requests</p>
+  </div>
+  {% if user.is_authenticated %}
+  <a href="{% url 'requests:create' %}" class='btn btn-md btn-fill btn-warning'><span class = 'glyphicon glyphicon-ok-circle'></span>Create a new request</a>
+  {% endif %}
+</div>
+
+{% endblock %}
+
+{% block request_content %}
+<div class="col-md-8">
+  <div class="list-request">
+    {% for request in object_list %}
+    <a class ='list-request-item list-request-item-action' href="{% url 'requests:single' slug=request.slug %}">
+      <h2 class='title list-request-item-heading'>{{request.title}}</h2>
+      <h3 class='title list-request-item-heading'>{{request.name}}</h3>
+      <div class="list-grroup-item-text container-fluid">
+        {{request.description_html|safe}}
+        <div class="row">
+          <div class="col-md-4">
+            <span class = 'badge badge-primary badge-pill'>{{request.comments.count}}</span>
+            comment{{request.comments.count|pluralize}}
+          </div>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

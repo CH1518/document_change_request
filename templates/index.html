@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>GR Dashboard</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="{% static 'gr_dashboard/css/index.css' %}">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Heading Row -->
+    <div class="row align-items-center my-5">
+      <div class="col-lg-7">
+        <img class="img-fluid rounded mb-4 mb-lg-0" src="https://headspring.com/wp-content/uploads/2018/01/Global-Resale-logo.png" alt="">
+      </div>
+      <!-- /.col-lg-8 -->
+      <div class="col-lg-5">
+        <h2 class="font-weight-light">Global Resale</h2>
+        <h2 class="font-weight-light">Document Change Request Page</h2>
+        <p>This site is where you can submit and track process and documentation changes for approval.</p>
+      <!--  <a class="btn btn-primary" href="#">Call to Action!</a>-->
+      </div>
+      <!-- /.col-md-4 -->
+    </div>
+    <!-- /.row -->
+
+
+    <!-- Content Row -->
+    <div class="row">
+      {% if user.is_authenticated %}
+      <div class="col-md-4 mb-5">
+        <div class="card h-100">
+          <div class="card-body">
+            <h2 class="card-title row justify-content-center">DCR Page</h2>
+          </div>
+          <div class="card-footer text-center">
+            <a href="{% url 'requests:table' %}" class="btn btn-secondary btn-sm">DCR Page</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-5">
+        <div class="card h-100">
+          <div class="card-body row justify-content-center">
+            <h2 class="{% url 'accounts:signup' %}">Admin Log In</h2>
+          </div>
+          <div class="card-footer text-center">
+            <a href="{% url 'admin:index' %}" class="btn btn-secondary btn-sm ">Admin Log In</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-5">
+        <div class="card h-100">
+          <div class="card-body row justify-content-center">
+            <h2 class="{% url 'accounts:signup' %}">Log Out</h2>
+          </div>
+          <div class="card-footer text-center">
+            <a href="{% url 'accounts:logout' %}" class="btn btn-secondary btn-sm ">Log Out</a>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <div class="col-md-4 mb-5">
+        <div class="card h-100">
+          <div class="card-body">
+            <h2 class="card-title row justify-content-center">Log In</h2>
+          </div>
+          <div class="card-footer text-center">
+            <a href="{% url 'accounts:login' %}" class="btn btn-secondary btn-sm">Log In</a>
+          </div>
+        </div>
+      </div>
+      <!-- /.col-md-4 -->
+      <div class="col-md-4 mb-5">
+        <div class="card h-100">
+          <div class="card-body">
+            <h2 class="card-title row justify-content-center">Sign Up</h2>
+          </div>
+          <div class="card-footer text-center">
+            <a href="{% url 'accounts:signup' %}" class="btn btn-secondary btn-sm">Sign Up</a>
+          </div>
+        </div>
+      </div>
+      <!-- /.col-md-4 -->
+      <div class="col-md-4 mb-5">
+        <div class="card h-100">
+          <div class="card-body row justify-content-center">
+            <h2 class="{% url 'accounts:signup' %}">Admin Log In</h2>
+          </div>
+          <div class="card-footer text-center">
+            <a href="{% url 'admin:index' %}" class="btn btn-secondary btn-sm ">Admin Log In</a>
+          </div>
+        </div>
+      </div>
+      <!-- /.col-md-4 -->
+      {% endif %}
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Global Resale 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

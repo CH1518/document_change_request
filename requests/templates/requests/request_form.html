@@ -1,0 +1,52 @@
+{% extends "requests/requests_base.html" %}
+{% load bootstrap3 %}
+
+{% block request_content %}
+<div class="container">
+
+<h4>Purpose:</h4>
+<p>This document describes the process that is to be used for requesting and managing changes to documents created or maintained by the members of Global Resale. This process will facilitate communication about requested changes among the stakeholders of Global Resale, provide a common process for resolving requested changes and reported problems, and reduce the uncertainty around the existence, state, and outcome of a change that has been requested.</p>
+<h5>To maintain integrity between Global Resale’s Key Process Documents, Training Documents, and IT roadmap development, the following types of change require completion of this Document Change Request:</h5>
+<div class="col-md-auto">
+  <table class="table table-bordered table-sm">
+    <thead>
+      <tr>
+        <th class="text-center">Process Change Type</th>
+        <th class="text-center">Key Stakeholder</th>
+        <th class="text-center">Frequency</th>
+        <th class="text-center">Sign-off</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Customer-specific</td>
+        <td>Large Customer Account Mgr</td>
+        <td>As needed, with documents being updated at time of change</td>
+        <td>Account AE, Business OPS, Production Manager, Compliance</td>
+      </tr>
+      <tr>
+        <td>Production Efficiencies</td>
+        <td>Production</td>
+        <td>As needed, but all changes must be tracked and documents updated bi-weekly.</td>
+        <td>Production Manager, Business OPS, Compliance</td>
+      </tr>
+      <tr>
+        <td>IT Capability Enhancements</td>
+        <td>IT</td>
+        <td>As needed, with documents being updated once UAT is complete</td>
+        <td>Production Manager, IT Process Manager, Business OPS, Compliance</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+<h4 class="heading">Create a new request</h4>
+    <div class="container">
+      <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" class ='btn btn-primary btn-large' value="Submit request">
+      </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "DCR_template.html" %}
+{% block content %}
+<h2>DCR List</h2>
+          <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>Creator</th>
+                  <th>Title</th>
+                  <th>Last Modified</th>
+                  <th>Area</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for request in object_list %}
+                <tr>
+                  <td>{{request.user}}</td>
+                  <td><a href="{% url 'requests:single' slug=request.slug %}">{{request.document_title}}</a></td>
+                  <td>{{request.created_at}}</td>
+                  <td>{{request.area}}</td>
+                  <td>{{request.status}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="C:\Users\carlos.hernandez\Desktop\GR_Dashboard\gr_dashboard_draft\static\gr_dashboard\js\lisenme.js"></script>
+<script>
+jQuery('#table_format').ddTableFilter();
+</script>
+{% endblock %}

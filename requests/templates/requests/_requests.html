@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="col-md-8 card mb-4  mt-3 ">
+        <h3>Leave a comment</h3>
+        <form method='POST' style="margin-top: 1.3em;">
+            {% csrf_token %}
+            {{comment_form.as_p}}
+            <br>
+            <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+        </form>
+    </div>
+  </body>
+</html>

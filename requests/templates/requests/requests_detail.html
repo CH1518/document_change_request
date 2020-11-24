@@ -1,0 +1,56 @@
+{% extends "requests/requests_base.html" %}
+{% load bootstrap3 %}
+
+{% block prerequest %}
+<h1 style="text-align:center" class="heading">{{request.name}}</h1>
+<div class="container">
+  <div class="jumbotron border border-dark">
+  <h4 class="h4 mb-4">{{request.document_title}} - {{request.area}}</h4>
+  <p class="font-weight-normal">Submitted by <a><strong>{{request.user.username}}</strong></a>, {{request.created_at}}</p>
+  <p class="font-weight-normal"><strong>Rev</strong> <a>{{request.revision_number}}</a>, <strong>Priority:</strong> {{request.priority}}, <strong>New Document/Process?</strong> <a>{{request.new_document_or_process}}</a></p>
+  <div class="container p-3 my-3 bg-white text-black rounded border border-dark">
+    <h5>Request Description:</h5>
+    <p class="font-weight-normal">{{request.description_html|safe}}</p>
+  </div>
+  <div class="container p-3 my-3 bg-white text-black rounded border border-dark">
+    <h5>Reason for change:</h5>
+    <p class="font-weight-normal">{{request.reason_for_change|safe}}</p>
+  </div>
+  <h4 class="h4 mb-4">Status: {{request.status}}</h4>
+  <h6 class="h6 mb-6">File: <a href="{{request.file}}">{{request.file_name}}</a></h6>
+  </div>
+</div>
+{% endblock %}
+
+{% block request_content %}
+    <div class="col-md-8 card mb-4  mt-3 ">
+      <div class="card-body">
+        <!-- comments -->
+        <h2>{{ request.comments.count }} comments</h2>
+
+        {% for comment in request.comments.all %}
+        <div class="comments" style="padding: 10px;">
+          <p class="font-weight-bold">
+            {{ comment.name }}
+            <span class=" text-muted font-weight-normal">
+              {{ comment.created_on }}
+            </span>
+          </p>
+          {{ comment.body | linebreaks }}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+
+<div class="col-md-8 card mb-4  mt-3 ">
+    <h3>Leave a comment</h3>
+    <form action="{% url 'requests:single' slug=request.slug %}" method='POST' style="margin-top: 1.3em;">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <br>
+        <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+    </form>
+</div>
+
+{% endblock %}
